@@ -26,6 +26,7 @@ const videoSchema = new mongoose.Schema({
     addDesc: String,
     incidentType: String,
     severity: Number,
+    authenticity: Number,
     location: String,
     summary: String,
     isProcessed: {
