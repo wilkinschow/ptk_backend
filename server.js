@@ -91,5 +91,49 @@ app.get('/videos/:id', async (req, res) => {
     }
 });
 
+app.patch('/videos/:id', async (req, res) => {
+    try {
+        const { field, value } = req.body;
+
+        if (!field) {
+            return res.status(400).json({ message: 'Field is required' });
+        }
+
+        const allowedFields = [
+            'name',
+            'videoDesc',
+            'addDesc',
+            'incidentType',
+            'severity',
+            'authenticity',
+            'location',
+            'summary',
+            'isProcessed'
+        ];
+
+        if (!allowedFields.includes(field)) {
+            return res.status(400).json({ message: 'Invalid field' });
+        }
+
+        const updatedVideo = await Video.findByIdAndUpdate(
+            req.params.id,
+            { $set: { [field]: value } },
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedVideo) {
+            return res.status(404).json({ message: 'Video not found' });
+        }
+
+        res.json({
+            message: `Field '${field}' updated successfully`,
+            data: updatedVideo
+        });
+
+    } catch (error) {
+        res.status(500).json({ message: 'Update failed', error: error.message });
+    }
+});
+
 
 app.listen(3000, () => console.log('Server running on port 3000'));
