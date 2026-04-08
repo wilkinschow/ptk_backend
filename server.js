@@ -31,6 +31,7 @@ const videoSchema = new mongoose.Schema({
     severity: Number,
     authenticity: Number,
     location: String,
+    remarks: String,
     summary: String,
     isProcessed: {
         type: Boolean,
@@ -91,6 +92,7 @@ app.patch('/videos/:id', async (req, res) => {
             'severity',
             'authenticity',
             'location',
+            'remarks',
             'summary',
             'isProcessed'
         ];
@@ -213,6 +215,9 @@ app.post('/api/generate-pdf', async (req, res) => {
                   </tr>
                   <tr style="border: 1px solid rgba(118, 118, 118, 0.5);">
                     <td colspan="6" style="padding: 10px; border-top: 1px solid rgba(118, 118, 118, 0.1); white-space: pre-wrap;"><span class="label" style="display: block">Incident Details</span>${data.videoDesc || 'N/A'}</td>
+                  </tr>
+                  <tr style="border: 1px solid rgba(118, 118, 118, 0.5);">
+                    <td colspan="6" style="padding: 10px; border-top: 1px solid rgba(118, 118, 118, 0.1); white-space: pre-wrap;"><span class="label" style="display: block">Remarks</span>${data.remarks || 'No remarks'}</td>
                   </tr>
                 </table>
                 <h3 style="font-family: sans-serif; margin-top: 20px; font-size: 16px;">Attachments</h3>
