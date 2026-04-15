@@ -185,7 +185,7 @@ app.post('/api/generate-pdf', async (req, res) => {
             <head>
                 <style>
                     body { font-family: Inter,serif; padding: 40px; color: #333; position: relative; }
-                    td {font-family: Inter,serif; color: #333;}
+                    td {font-family: sans-serif; color: #333;}
                     .label { font-weight: bold; color: #555; }
                     .row { margin-bottom: 10px; display: flex}
                     .field { flex: 1; display: flex; flex-direction: column; border: 1px solid rgba(0, 0, 0, 0.5); padding: 5px}
@@ -195,7 +195,7 @@ app.post('/api/generate-pdf', async (req, res) => {
                         left: 20%;
                         width: 30%;
                         height: 30%;
-                        opacity: 0.2;
+                        opacity: 0.1;
                         z-index: -1;
                         pointer-events: none;
                     }
